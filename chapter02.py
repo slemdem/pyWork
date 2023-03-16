@@ -1,146 +1,133 @@
-print("hello");print("world")
-print("hello","world")
+#+부호는 일반적으로 생략함
+#-부호 연산자는 피 연산자 항의 부호를 반대로 바꾼 '결과값'을 지님
+n = -10
+print('+n =', +n)
+print('-n =',-n)
+print('n =', n)
 
-#정수 리터럴 표현
-#10진수
-print(-1+1)
-#2진수 b
-print(0b1010 + 1)
-#8진수 o
-print(0o17)
-#16진수 x
-print(0xf+1)
+print('|-2 + -3| =',-(-2+-3))
 
-#소수점표기법 정수와 소수 부분을 .으로 분리해 표기 
-print(15 + .12345)
-print(15.+.12345)
-#지수(과학적) 표기법 유효 숫자와 지수를 e로 분리해 표기
-#아주 크거나 아주 작은 수를 상대적으로 간결하게 표현
-print(3.14e-5 +1)
+#덧셈 뺄셈 곱셈 나눗셈 나누셈의 몫, 나머지 거듭제곱
+#   +    -    *      /          //      %        **
 
-#논리 리터럴
-print(not False)
-print(True)
-print(not True)
-print(False)
+#실수의 경우 내부적으로 유효 자릿수와 지수값을 기반으로 근사화된 값으로 저장
 
-#문자열 리터럴
-#입출력을 위한 문자열을 나타내는 리터럴
-#같은 종류의 따옴표로 감싼 문자들의 묶음
-print('hello'+'!')
+#나눗셈의 몫과 나머지를 구하는 함수
+def show_division(divided,divisor) :
 
-#인수로 하나의 문자열을 갖는 출력문 - 기본적으로 출력 후 줄바꿈 처리
-print('hello world')
-#다양한 유형의 리터럴을 인수로 가질 수 있음
-print(3+2)
-#하나의 인수도 갖지 않는 함수
-#인수 없이 호출 시 출력내용이 없기에 줄바꿈 처리만 일어난다
-print()
-#print()는 가변개의 인수를 가질 수 있음 , 로 구분
-print(2, '+', 3, '=', 2+3)
-
-#식별자 = 함수의 이름
-#알파벳 문자, 숫자문자, _ 로 이루어져야 함
-#숫자문자로 시작 불가, 키워드와 동일하면 안됨
-#키워드(예약어) = 특별히 정의하지 않아도 이미 문법적으로 특별한 의미가 있는 단어
-#한글로 가능은 하지만 깨지거나 재 사용성이 낮아짐
-
-#모든 함수는 호출되기 전에 미리 호출형태와 동작내용이 정의되어야 함
-#함수의 식별자는 보통 그 동작을 나타낼 수 있는 동사구로 이름짓는 것이 좋음
-#함수의 몸체는 반드시 1열보다 한 단계 들여써야 함
-
-#사용자 정의 함수 부
-def show_message() : #함수 헤더
-    print('hello world!') #함수 몸체(스위트)
-    print('good job')
-
-#주 프로그램 부
-print('시작')
-show_message()
-print('마침')
-
-#변수 - 프로그램이 진행되는 동안 변할 수 있는 데이터
-#어떤 값을 저장할 수 있는 메모리 공간
-#변수에는 자료형에 상관없이 하나의 데이터만 유지 가능
-# '=' (대입연산자) 기호는 같다가 아니라 오른쪽 표현식의 결과값을 왼쪽에 넣는다는 의미
-#저장된 데이터는 무한히 참조가능 하지만 한번에 하나의 데이터만 저장가능
-nStud, nProf = 9,3
-print(nStud)
-nStud = nProf
-print(nStud)
-nStud = "문자열"
-print(nStud, nProf)
-
-#변수의 자료형은 할당되는 값에 따라 자료형이 동적으로 결정됨
-print(type(nStud))
-
-#사실 파이썬 변수는 각 데이터에 대한 아이디를 가지는 것
-#내장함수 id는 데이터의 아이디를 반환해 줌
-id(123)
-n = 123
-id(n)
-n= 'hi'
-id(n)
-id('hi')
-
-#매개변수 - 함수 내에 선언된 변수로 함수 호출시 전달되는 인수를 받을 목적으로 사용되는 변수
-#호출문의 각 인수를 순서대로 전달받음 개수 제한은 없
-#함수 몸체에서 매개변수로 전달받는 값을 반드시 이용 (이용하지 않는다면 매개변수 없이 생성)
-#동일한 함수가 인수로 전달된 다른 데이터에 대해 주어진 일을 처리할 수 있게 함
-
-#사용자 정의 함수부
-def show_messege(msg, name):
-    print(msg, name, '님')
-
-#주 프로그램 부
-print('start')
-show_messege('hi', '진상하')
-show_messege('반가워','홍길동')
-print('end')
-
-#함수 호출시 매개변수의 이름을 명시하면 순서와 상관없이 인수를 전달 할 수 있음
-print('start')
-show_messege(msg = 'hi', name = '진상하')
-show_messege(name = '홍길동', msg = '반가워')
-print('end')
-
-
-#함수 정의시 매개변수는 기본값을 지정할 수 있음 - 디폴트 인수라고 부름
-#매개변수의 초기값은 반드시 뒤쪽 매개변수부터 지정되어야 함
-def show_msg(msg='안녕하세요', name ='여러분'):
-    print(msg, name, '님')
+    #나눗셈의 몫을 구하고 출력
+    n = int(divided//divisor)
+    print('몫 = ', n)
     
-show_msg()
-show_msg('안녕')
-show_msg(name = '홍길동')
+    #나눗셈의 나머지를 구하고 출력
+    n = int(divided%divisor)
+    print('나머지 = ', n) 
 
-print('당신의 이름은?', end='')
-name = input()
-print('반가워요', name)
+p = int(input('피젯수를 정수로 입력하세요: '))
+j = int(input('젯수를 정수로 입력하세요: '))
+show_division(p,j)
 
-def make_message():
-    name = input('당신의 이름은?')
-    msg = input('하실 말씀은?') + ' ' + name
-    print(msg)
+#대입연산자 - 우측 표현식의 결과값을 좌측 변수에 대입
+#피연산자들의 순서를 바꿀 수 없고, 다른 연산자보다 낮은 우선순위를 가짐
+#왼쪽항에는 새로운 값을 대입받을 수 있는 성질의 표현식만 올 수 있음
+#왼쪽항에 올 수 있는 것들 = 객체를 참조하는 표현식, 단순 변수
+n1 = 1 + 2
+n2 = n1
+n2 = n2 - 1
+n3 = n1 + n2
+
+#대입연산자는 오른쪽에서 왼쪽 방향으로 결합되며 결과값은 대입된 왼쪽항이 갖는 값
+x = y = z = 1
+z = 1; y = z; x = y;
+
+#다중 대입문 - 좌변의 변수들에다가 순서대로 우변의 표현식의 값을 순차적으로 대입
+x, y = 1, 2 # x = 1; y = 2;
+
+#다중대입문으로 변수값을 쉽게 맞교환 할 수 있음
+x, y = y, x # tmp = x; x = y; y = tmp;
+
+
+#비트 연산자 - 각항을 구성하는 데이터의 비트들 간에 비트논리연산 혹은 시프트연산을 수행
+# 단항  ~    비트부정              각 비트값을 반전한 결과값
+# 이항  &    비트 논리곱           두 비트가 모두 1일 때만 1
+#       |    비트 논리합           두 비트가 모두 0일 때만 0
+#       ^    비트 배타적 논리합    두 비트가 값이 다를 때만 1
+#       <<   비트 왼쪽으로 이동     각 비트를 왼쪽으로 이동
+#       >>   비트 오른쪽으로 이동     각 비트를 오른쪽으로 이동
+
+n1 = 0b10101101
+n2 = 0b00001111 # n2 = 15
+
+#내장함수 bin() 인수로 지정한 정수을 이진 비트열의 문자열로 변환해 반환
+print(bin(n1 & n2))
+print(n1 & n2)
+print(bin(n1 | n2))
+print(n1 | n2)
+print(bin(n1 ^ n2))
+print(n1 ^ n2)
+print(bin(~n2))
+print(~n2)
+
+
+print(bin(n2 >> 2))
+print(n2 >> 2) # 3 = 15 // (2**2)
+print(bin(n2 << 2))
+print(n2 << 2) # 60 = 15 * (2**2)
+
+#총 구매금액과 지불금액을 입력받아 잔돈을 계산하고 잔돈으로 지불할 최소 지폐수 출력
+def exchange(money):
+    print('잔돈:',money,'원')
+    exc_5000 = money // 5000
+    money %= 5000
+    exc_1000 = money // 1000
+    print('5000원권', exc_5000,'장')
+    print('1000원권', exc_1000,'장')
+
+total_cost = int(input('구매한 물건의 총 구매 금액은? '))
+payment = int(input('구매한 물건의 총 구매 금액은? '))
+change = payment - total_cost
+exchange(change)
+
+#연산자의 우선순위 괄호 -> 산술 -> 비트 -> 논리 -> 대입
+
+#사용자로부터 화씨온도를 입력받아 섭씨온도로 변환
+def fahrenheit_to_celsius(f):
+    c = 5/9*(f-32)
+    return c
+
+def get_real(prompt):
+    gr = float(input(prompt))
+    return gr
     
-print('start')
-make_message()
-print('end')
+ftemp = get_real('변환하고자 하는 화씨온도?')
+ctemp = fahrenheit_to_celsius(ftemp)
+print('화씨',ftemp,'도는 섭씨',ctemp,'도')
 
-def make_message(name):
-    msg = '반가워요' + name
-    print(msg)
+
+#사용자로부터 초단위 시간을 입력받아 시 준 초로 변환
+def convert_time(time):
+    s = time
+    h = s // 3600
+    s %= 3600
+    m = s//60
+    s %= 60
+
+    print(time,'초는', h,'시간',m,'분',s,'초이다')
     
-print('start')
-input_name = input('이름')
-make_message(input_name)
-print('end')
 
-def make_message(name):
-    msg = '반가워요' + name
-    return msg
+def get_integer(prompt):
+    gi = int(input(prompt))
+    return gi
 
-print('start')
-input_name = input('이름')
-print(make_message(input_name))
-print('end')
+seconds = get_integer('변환하고자 하는 시간(초)?')
+convert_time(seconds)
+
+
+
+#n비트를 모두 1로 설정한 수를 10진수와 2진수로 표현
+def set_all_bits(n):
+    return (1<<n) - 1 
+
+bits = get_integer('설정할 비트 수는?')
+i = set_all_bits(bits)
+print(bits,'비트를 모두 1로 설정한 수는', i,'(', bin(i),')이다')
