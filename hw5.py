@@ -29,7 +29,7 @@ def read_number(number):
     
     number2 = number//10
     number = number%10
-    if number1 < 10:
+    if 0 < number1 < 10:
         return f'{read_single_digit(number1)} {read_single_digit(number2)} {read_single_digit(number)}'
     else:
         return read_single_digit(number1)
